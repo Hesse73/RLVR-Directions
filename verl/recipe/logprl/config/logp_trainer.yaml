@@ -1,0 +1,41 @@
+hydra:
+  searchpath:
+    - file://verl/trainer/config
+
+defaults:
+  - ppo_trainer
+  - _self_
+
+data:
+  gen_batch_size: ${data.train_batch_size}
+
+reward_model:
+  reward_manager: dapo
+  overlong_buffer: 
+    enable: False # We try to avoid forgetting to set enable
+    len: 0
+    penalty_factor: 0.0
+    log: False
+
+algorithm:
+  logp_diff: # Our logp-diff algorithm
+    enable: True
+    start_step: 20 
+    quantile: 0.8 # quantile 0.8, i.e., the highest 20% 
+    method: 'none' # none/clip/kl
+    mask_by: 'logp' # logp/entropy/logp-middle/logp-end
+
+  reweight:
+    enable: False
+    constant: 0.1
+    adv_mask: 'none' # none/positive/negative
+    method: 'normalize' # normalize/reshape
+
+  filter_groups:
+    _target_: verl.trainer.config.FilterGroupsConfig
+    enable: False # We try to avoid forgetting to set enable
+    metric: null # acc / score / seq_reward / seq_final_reward / ...
+    max_num_gen_batches: 0 # Non-positive values mean no upper limit
+
+trainer:
+  project_name: logpdiff-rl
