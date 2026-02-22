@@ -37,13 +37,13 @@ Our RL training implementation is built upon the [`verl`](https://github.com/vol
 The training curves for Qwen2.5-Math-7B across different reweighting methods demonstrate the superiority of our approach:
 
 <div align="center">
-  <img src="figs/curves.png" alt="Training Curves" />
+  <img src="figs/curves.png" width="66%" alt="Training Curves" />
 </div>
 
 For reproducibility, we performed 4 independent runs of our method. All runs consistently reached or exceeded the reported performance:
 
 <div align="center">
-  <img src="figs/replicate.png" alt="Reproducibility Runs" />
+  <img src="figs/replicate.png" width="66%" alt="Reproducibility Runs" />
 </div>
 
 
