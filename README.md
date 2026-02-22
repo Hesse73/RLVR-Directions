@@ -1,5 +1,5 @@
 # RLVR Directions
-> Source code for our ICLR'26 paper: [On the Direction of RLVR Updates for LLM Reasoning: Identification and Exploitation](https://openreview.net/forum?id=r6Pw3RiMYL)
+> Source code for our ICLR'26 paper: [Beyond Magnitude: Leveraging Direction of RLVR Updates for LLM Reasoning](https://openreview.net/forum?id=r6Pw3RiMYL)
 
 ## Extrapolate
 
@@ -23,7 +23,7 @@ Please cite our work if you find it helpful!
 ```Bibtex
 @inproceedings{
   huang2026on,
-  title={On the Direction of {RLVR} Updates for {LLM} Reasoning: Identification and Exploitation},
+  title={Beyond Magnitude: Leveraging Direction of RLVR Updates for LLM Reasoning},
   author={Kexin Huang and Haoming Meng and Junkang Wu and Jinda Lu and Chiyu Ma and Ziqian Chen and Xue Wang and Bolin Ding and Jiancan Wu and Xiang Wang and Xiangnan He and Guoyin Wang and Jingren Zhou},
   booktitle={The Fourteenth International Conference on Learning Representations},
   year={2026},
