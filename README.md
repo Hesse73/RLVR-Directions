@@ -1,25 +1,54 @@
 # RLVR Directions
 > Source code for our ICLR'26 paper: [Beyond Magnitude: Leveraging Direction of RLVR Updates for LLM Reasoning](https://openreview.net/forum?id=r6Pw3RiMYL)
 
-## Extrapolate
+## 🔍 Token Replacement & Extrapolation
 
-The extrapolate code is in the `extrapolate` folder.
+### Usage
+
+The extrapolatation codes are located in the `extrapolate` folder.
 We generate 32 responses for each prompt, with 8 different random seeds and 4 responses per seed, the script can be found in `scripts/run_extrapolate.sh`.
 
 The results will be saved in the `extrapolate/results` folder, which can be checked using the `check_results.ipynb` notebook.
 
+### Empirical Results
 
-## RL Training w/ Reweighting
+We conduct token replacement (adapted from [Meng et al.](https://openreview.net/forum?id=8vWIXno8LW)) to compare the effectiveness of different metrics in identifying critical tokens. We then apply extrapolation with $\Delta\log p$ to amplify RLVR-induced changes.
 
-We use the verl library to perform RL training with reweighting.
-We modify the DAPO recipe of verl, and the modified code is in the `verl/recipe/logp_rl` folder.
+<div align="center">
+  <img src="figs/replace.png" width="63%" alt="Token Replacement w/ Different Metrics" />
+  <img src="figs/extra.png" width="35%" alt="Extrapolation w/ \Delta\log p" />
+  <p><em>Left: Token Replacement w/ Different Metrics. Right: Extrapolation w/ Δlogp.</em></p>
+</div>
 
-The training script for Qwen2.5-Math-7B and Qwen3-8B-Base are in the `scripts/run_7B.sh` and `scripts/run_8B.sh` respectively.
 
-Please follow [the DAPO's recipe](https://github.com/BytedTsinghua-SIA/DAPO) to prepare the data and models, then you can run the scripts to start training.
+## 🚀 RL Training w/ Reweighting
 
-## Reference
-Please cite our work if you find it helpful!
+### Usage
+
+Our RL training implementation is built upon the [`verl`](https://github.com/volcengine/verl) library. The modified DAPO recipe is available in `verl/recipe/logp_rl/`.
+
+1. **Preparation**: Follow the [DAPO recipe](https://github.com/BytedTsinghua-SIA/DAPO) to prepare your datasets and models.
+2. **Training**: Execute the corresponding script for your model:
+   - For **Qwen2.5-Math-7B**: `bash scripts/run_7B.sh`
+   - For **Qwen3-8B-Base**: `bash scripts/run_8B.sh`
+
+### Empirical Results
+
+The training curves for Qwen2.5-Math-7B across different reweighting methods demonstrate the superiority of our approach:
+
+<div align="center">
+  <img src="figs/curves.png" alt="Training Curves" />
+</div>
+
+For reproducibility, we performed 4 independent runs of our method. All runs consistently reached or exceeded the reported performance:
+
+<div align="center">
+  <img src="figs/replicate.png" alt="Reproducibility Runs" />
+</div>
+
+
+## 📖 Reference
+If you find our work helpful, please consider citing it:
 ```Bibtex
 @inproceedings{
   huang2026on,
